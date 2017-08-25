@@ -12,6 +12,10 @@
 		4E980CAC1F50325D00806F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E980CAA1F50325D00806F2D /* Main.storyboard */; };
 		4E980CAE1F50325D00806F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E980CAD1F50325D00806F2D /* Assets.xcassets */; };
 		4E980CB11F50325D00806F2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E980CAF1F50325D00806F2D /* LaunchScreen.storyboard */; };
+		4E980CB91F50327F00806F2D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E980CB81F50327F00806F2D /* SwiftyJSON.swift */; };
+		4E980CBB1F50334E00806F2D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E980CBA1F50334E00806F2D /* NetworkService.swift */; };
+		4E980CBD1F50341100806F2D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E980CBC1F50341100806F2D /* Account.swift */; };
+		4E980CC11F503E1D00806F2D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E980CC01F503E1D00806F2D /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		4E980CAD1F50325D00806F2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E980CB01F50325D00806F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E980CB21F50325D00806F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E980CB81F50327F00806F2D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = netdemo/SwiftyJSON.swift; sourceTree = "<group>"; };
+		4E980CBA1F50334E00806F2D /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		4E980CBC1F50341100806F2D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		4E980CC01F503E1D00806F2D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +46,7 @@
 		4E980C9A1F50325D00806F2D = {
 			isa = PBXGroup;
 			children = (
+				4E980CB81F50327F00806F2D /* SwiftyJSON.swift */,
 				4E980CA51F50325D00806F2D /* netdemo */,
 				4E980CA41F50325D00806F2D /* Products */,
 			);
@@ -54,14 +63,33 @@
 		4E980CA51F50325D00806F2D /* netdemo */ = {
 			isa = PBXGroup;
 			children = (
+				4E980CBA1F50334E00806F2D /* NetworkService.swift */,
 				4E980CA61F50325D00806F2D /* AppDelegate.swift */,
-				4E980CA81F50325D00806F2D /* ViewController.swift */,
+				4E980CBE1F50341700806F2D /* model */,
+				4E980CBF1F50341F00806F2D /* controllers */,
 				4E980CAA1F50325D00806F2D /* Main.storyboard */,
 				4E980CAD1F50325D00806F2D /* Assets.xcassets */,
 				4E980CAF1F50325D00806F2D /* LaunchScreen.storyboard */,
 				4E980CB21F50325D00806F2D /* Info.plist */,
+				4E980CC01F503E1D00806F2D /* StringExtension.swift */,
 			);
 			path = netdemo;
+			sourceTree = "<group>";
+		};
+		4E980CBE1F50341700806F2D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4E980CBC1F50341100806F2D /* Account.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		4E980CBF1F50341F00806F2D /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E980CA81F50325D00806F2D /* ViewController.swift */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +165,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E980CB91F50327F00806F2D /* SwiftyJSON.swift in Sources */,
 				4E980CA91F50325D00806F2D /* ViewController.swift in Sources */,
+				4E980CC11F503E1D00806F2D /* StringExtension.swift in Sources */,
+				4E980CBB1F50334E00806F2D /* NetworkService.swift in Sources */,
+				4E980CBD1F50341100806F2D /* Account.swift in Sources */,
 				4E980CA71F50325D00806F2D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
