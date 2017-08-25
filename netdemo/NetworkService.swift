@@ -32,9 +32,6 @@ class NetworkService: NSObject {
     
     static func getSessionConfiguration(_ account: Account) -> URLSessionConfiguration {
         let config = URLSessionConfiguration.default
-        let userPasswordString = "\(account.username):\(account.getPassword())"
-        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
-      //  let base64EncodedCredential = userPasswordData!.base64EncodedString()
         let jwtToken = ""
         config.httpAdditionalHeaders = ["Authorization": "Bearer \(jwtToken)"]
         return config
@@ -49,6 +46,15 @@ class NetworkService: NSObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded",
+                         forHTTPHeaderField: "Content-Type")
+        return request
+    }
+    
+    static func makeJsonPostRequest(_ uri: String) -> URLRequest {
+        let url = NetworkService.getURL(uri)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json",
                          forHTTPHeaderField: "Content-Type")
         return request
     }

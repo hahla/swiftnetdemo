@@ -36,7 +36,7 @@ class Account: NSObject {
                         success: @escaping(_ user: Account) -> Void,
                         fail: @escaping(_ error: String) -> Void) -> URLSessionDataTask
     {
-        var request = NetworkService.makeFormEncodedRequestFrom(postLoginAPI)
+        var request = NetworkService.makeJsonPostRequest(postLoginAPI)
         request.httpBody = NetworkService.createDataFromDictionary(["username": username, "password": password])
 
         let session = URLSession(configuration: .default)
