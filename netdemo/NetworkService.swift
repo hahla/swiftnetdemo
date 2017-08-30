@@ -9,11 +9,7 @@ import UIKit
 
 class NetworkService: NSObject {
     
-    static let URL_BASE: String = "http://192.168.2.105:8080"
-    
-    static func generateBoundaryString() -> String {
-        return "Boundary-\(NSUUID().uuidString)"
-    }
+    static let URL_BASE: String = "http://localhost:8080"
     
     static func createStringFromDictionary(_ dict: Dictionary<String, Any>) -> String {
         var params = String()
@@ -30,39 +26,34 @@ class NetworkService: NSObject {
         return createStringFromDictionary(dict).data(using: .utf8)
     }
     
-    static func getSessionConfiguration(_ account: Account) -> URLSessionConfiguration {
+    static func createJsonFromDictionary(_ dict:  Dictionary<String, Any>) -> Data {
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict,
+                                                      options: [.prettyPrinted]) {
+            return jsonData
+        }
+        return "failed to createJsonFromDictionary".data(using: .utf8)!
+    }
+    
+    // These functions are for use after login has been completed
+    // and a jwt is available
+    static func getSessionConfiguration(_ jwt: String) -> URLSessionConfiguration {
         let config = URLSessionConfiguration.default
-        let jwtToken = ""
-        config.httpAdditionalHeaders = ["Authorization": "Bearer \(jwtToken)"]
+        config.httpAdditionalHeaders = ["Authorization": "Bearer \(jwt)"]
+        print("additionalHeaders = \(String(describing: config.httpAdditionalHeaders))")
         return config
     }
     
     static func getURL(_ uri: String) -> URL {
         return URL(string: "\(NetworkService.URL_BASE)\(uri)")!
     }
-    
-    static func makeFormEncodedRequestFrom(_ uri: String) -> URLRequest {
-        let url = NetworkService.getURL(uri)
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/x-www-form-urlencoded",
-                         forHTTPHeaderField: "Content-Type")
-        return request
-    }
-    
+
+    // These functions do not require a jwt token
     static func makeJsonPostRequest(_ uri: String) -> URLRequest {
         let url = NetworkService.getURL(uri)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json",
                          forHTTPHeaderField: "Content-Type")
-        return request
-    }
-    
-    static func makeGetRequestFrom(_ uri: String) -> URLRequest {
-        let url = NetworkService.getURL(uri)
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
         return request
     }
     

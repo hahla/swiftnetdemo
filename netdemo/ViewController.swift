@@ -21,21 +21,28 @@ class ViewController: UIViewController {
     }
 
     @IBAction func doLoginSuccess(_ sender: Any) {
-        doLogin(username: "admin2", "abc123")
+        doLogin(username: "admin", "secret")
     }
 
     @IBAction func doLoginFail(_ sender: Any) {
-        doLogin(username: "adminBAD", "abc123")
+        doLogin(username: "adminBAD", "wrong")
     }
     
     
+    // Initiate Login, and if successful, then
     func doLogin(username: String, _ password: String)  {
         
-        func success (_ account: Account) {
-            DispatchQueue.main.async(){
-                print("success!", account)
-                // do stuff, like execute segues
+        func success (_ jwt: String) {
+            func gotAccountSuccess(_ account: Account) {
+                DispatchQueue.main.async(){
+                    print("successfully got account!", account)
+                    // do stuff, like execute segues
+                }
             }
+            print("successfully got jwt!", jwt)
+            Account.doGetAccountPostLogin(jwt: jwt,
+                                          success: gotAccountSuccess,
+                                          fail: fail).resume()
         }
         
         func fail(_ error: String) {
@@ -45,7 +52,7 @@ class ViewController: UIViewController {
         }
 
         // synchronize ui updates here with network request starting
-        Account.doLogin(username: username, password, success: success, fail: fail).resume()
+        Account.doLogin(username: username,                        password, success: success, fail: fail).resume()
     }
 }
 
